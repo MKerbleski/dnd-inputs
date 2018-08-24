@@ -1,0 +1,64 @@
+#board {
+  display: flex;
+  justify-content: space-around;
+}
+
+#start {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.startObject {
+  display: inline-block;
+  margin: 5px;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+#middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.middleObject {
+  display: inline-block;
+  margin: 5px;
+  width: 100px;
+  height: 100px;
+  color: pink;
+  background-color: pink;
+}
+.middleObject--circle {
+  border-radius: 50%;
+}
+.middleObject--square {
+  display: inline-block;
+}
+#results {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.resultsDiv {
+  display: flex;
+  justify-content: space-around;
+}
+.resultColor {
+  margin: 5px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
+.resultShape {
+  margin: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: gray;
+}
+.result--circle {
+  display: inline-block;
+  border-radius: 50%;
+}
+.result--square {
+  display: inline-block;
+}
