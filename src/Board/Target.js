@@ -13,9 +13,16 @@ const Target = (props) => (
     // props on target - in this case it is the type of shape props.shape
   props.connectDropTarget(
     <div
+      catagory={props.catagory}
       className={`middleObject middleObject--${props.shape}`}
-      style={{ backgroundColor: props.highlighted ? 'black' : 'gray' }}
-    >{props.catagory}</div>
+      style={{ backgroundColor: props.highlighted ? 'black' : 'white' }}
+    ><h4>{props.catagory}</h4>
+
+    {props.todos ? (props.todos.map( todo => {
+      return (<p>{todo.text}</p>)
+    })) : null}
+
+  </div>
   )
 );
 
@@ -35,9 +42,10 @@ const specObj = {
   //this is a good place to call redux(flux) actions
   drop(props) {
     console.log('target props', props)//target props //square or circle
-    const { shape } = props;
+    const { shape, catagory } = props;
     return ({
       shape,
+      catagory
       //drop() must return undefined or an object that represents drop result
     });
   }

@@ -14,17 +14,23 @@ class Board extends Component {
     this.handleDrop = this.handleDrop.bind(this);
     this.state = {
       results: [],
+      todos: [],
+      completed: []
     };
   }
 
-  handleDrop(color, shape) {
-    console.log("onDrop via handleDrop", color, shape)
+  handleDrop(color, shape , text, catagory) {
+    console.log("onDrop via handleDrop", color, shape, text, catagory)
     let drops2 = this.state.results.slice();
-    let newResult = {color, shape}
+    let todos2 = this.state.todos.slice();
+    let newResult = {color, shape};
+    todos2.push({text})
     drops2.push({newResult})
     this.setState({
       results: drops2,
+      todos: todos2,
     });
+    console.log(this.state)
   }
 
   render() {
@@ -33,14 +39,14 @@ class Board extends Component {
     return (
       <div id="board">
         <div id="start">
-          <Source color="red" id="1" onDrop={this.handleDrop} />
-          <Source color="green" id="2" onDrop={this.handleDrop} />
-          <Source color="blue" id="3" onDrop={this.handleDrop} />
-          <Source color="yellow" id="yellow" onDrop={this.handleDrop} />
+          <Source color="red" id="1" text="text 1" onDrop={this.handleDrop} />
+          <Source color="green" id="2" text="text 2" onDrop={this.handleDrop} />
+          <Source color="blue" id="3" text="text 3" onDrop={this.handleDrop} />
+          <Source color="yellow" id="yellow" text="text 4" onDrop={this.handleDrop} />
         </div>
         <div id="middle" style={{border: "1px solid red"}}>
-          <Target shape="circle" />
-          <Target shape="square" />
+          <Target catagory="todo" shape="circle" todos={this.state.todos}/>
+          <Target catagory="completed" shape="square" />
         </div>
         {console.log(results)}
         <div id="results">
@@ -48,7 +54,6 @@ class Board extends Component {
             return (
               <EndResult
                 color={result.newResult.color}
-                key={index}
                 index={index}
                 shape={result.newResult.shape}
               />
