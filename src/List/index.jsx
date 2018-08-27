@@ -85,7 +85,7 @@ class List extends Component {
     console.log(this.state)
   }
 
-  moveCard = (dragIndex, hoverIndex) => {
+    combineItems = (dragIndex, hoverIndex) => {
     console.log(dragIndex)
     console.log(hoverIndex)
     const { topList } = this.state
@@ -164,11 +164,11 @@ class List extends Component {
             return (
               <Item
                 key={index}
-                index={item.id}
+                index={index}
                 item={item}
                 id={item.id}
                 text={item.text}
-                moveCard={this.moveCard} />
+                combineItems={this.combineItems} />
             )
           })}
         </div>
