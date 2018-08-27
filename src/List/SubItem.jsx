@@ -1,22 +1,22 @@
 import React from 'react';
 import { DragSource, DropTarget, } from 'react-dnd';
 import { PropTypes } from 'prop-types';
+import Item from './Item';
 
 import flow from 'lodash/flow'
 import { findDOMNode } from 'react-dom'
 import styled from 'styled-components';
-import SubItem from './SubItem'
 
-const ItemDiv = styled.div`
-    border: 1px solid red;
-    background: lightgray;
-    max-width: 200px;
+const SubItemDiv = styled.div`
+    border: 1px solid green;
+    margin: 4px;
+    overflow: hidden;
+    background: white;
+    ${'' /* max-width: 30%; */}
     max-height: 300px;
-    .allSubItems {
-      border: 1px solid blue;
-      display: flex;
-
-    }
+    font-size: 10px;
+    display: flex;
+    flex-direction: row;
 `;
 
 
@@ -28,7 +28,7 @@ const style = {
 	cursor: 'move',
 }
 
-const itemSource  = {
+const subitemSource  = {
   beginDrag(props) { // this mounts any props onto the object
     console.log("beginDrag", props)
     return ({
@@ -54,7 +54,7 @@ const itemSource  = {
 //---------------
 };
 
-const itemTarget = {
+const subitemTarget = {
   // hover(props, monitor, component ) {
 	// 	if (!component) {
 	// 		return null
@@ -130,7 +130,7 @@ const itemTarget = {
 
 //---
 
-class Item extends React.Component {
+class SubItem extends React.Component {
  render() {
 		const {
 			text,
@@ -145,19 +145,18 @@ class Item extends React.Component {
 			connectDropTarget &&
 			connectDragSource(
 				connectDropTarget(
-          <div>
-            <ItemDiv>
-              <div >
+          <div className="subItem">
+            <SubItemDiv>
+              <div>
                 <h4>{text}</h4>
-                <div className="allSubItems">
-                  {contains.map(subItem => {
-                    return (
-                      <SubItem text={subItem.text} />
-                    )
-                  })}
-                </div>
+                {/* {contains.map(subItem => {
+                  return (
+                    <Item text={subItem.text} />
+                  )
+                })} */}
+
               </div>
-            </ItemDiv>
+            </SubItemDiv>
           </div>
 
           ),
@@ -167,12 +166,12 @@ class Item extends React.Component {
 }
 
 export default flow(
-  DragSource('item', itemSource, (connect, monitor) => ({
+  DragSource('item', subitemSource, (connect, monitor) => ({
   		connectDragSource: connect.dragSource(),
   		isDragging: monitor.isDragging(),
   	}),
   ),
-  DropTarget('item', itemTarget, (connect) => ({
+  DropTarget('item', subitemTarget, (connect) => ({
   	connectDropTarget: connect.dropTarget(),
   })),
-)(Item)
+)(SubItem)

@@ -168,6 +168,7 @@ class List extends Component {
                 item={item}
                 id={item.id}
                 text={item.text}
+                contains={item.contains}
                 combineItems={this.combineItems} />
             )
           })}
